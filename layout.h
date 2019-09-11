@@ -156,7 +156,7 @@ void configure_layout(uint8_t nlayers, uint16_t *p_layout_array_keyfile);
 #define ASCII_SPACE			0x20
 
 /************************************************************************/
-/*                     HID keycode defines                              */
+/*                        internal keycodes								*/
 /************************************************************************/
 
 //TYPE 255: Miscellaneous
@@ -269,235 +269,243 @@ void configure_layout(uint8_t nlayers, uint16_t *p_layout_array_keyfile);
 #define KB_RALT			0x0140
 #define KB_RGUI			0x0180
 
+/************************************************************************/
+/*                        external keycodes								*/
+/************************************************************************/
+
+/* The following key codes are identical with the codes in */
+/* the USB HID Keyboard/Keypad usage table.				   */
+
 //TYPE 0: Keyboard keycodes
-#define TYPE_KEY    0
-#define KB_NONE     0
-#define KB_A		4
-#define KB_B		5
-#define KB_C		6
-#define KB_D		7
-#define KB_E		8
-#define KB_F		9
-#define KB_G		10
-#define KB_H		11
-#define KB_I		12
-#define KB_J		13
-#define KB_K		14
-#define KB_L		15
-#define KB_M		16
-#define KB_N		17
-#define KB_O		18
-#define KB_P		19
-#define KB_Q		20
-#define KB_R		21
-#define KB_S		22
-#define KB_T		23
-#define KB_U		24
-#define KB_V		25
-#define KB_W		26
-#define KB_X		27
-#define KB_Y		28
-#define KB_Z		29
-#define KB_1		30
-#define KB_2		31
-#define KB_3		32
-#define KB_4		33
-#define KB_5		34
-#define KB_6		35
-#define KB_7		36
-#define KB_8		37
-#define KB_9		38
-#define KB_0		39
-#define KB_ENTER	40	
-#define KB_ESC		41
-#define KB_BKSPC	42	
-#define KB_TAB		43
-#define KB_SPACE	44	
-#define KB_MINUS	45
-#define KB_EQUAL	46
-#define KB_LBRCE	47
-#define KB_RBRCE	48
-#define KB_BSLSH	49
-#define KB_NUMBER	50 // Non-US # and ~ 
-#define KB_SMCLN	51
-#define KB_QUOTE	52
-#define KB_TILDE	53
-#define KB_COMMA	54
-#define KB_DOT		55
-#define KB_SLASH	56
-#define KB_CAPLK	57
-#define KB_F1		58
-#define KB_F2		59
-#define KB_F3		60
-#define KB_F4		61
-#define KB_F5		62
-#define KB_F6		63
-#define KB_F7		64
-#define KB_F8		65
-#define KB_F9		66
-#define KB_F10		67
-#define KB_F11		68
-#define KB_F12		69
-#define KB_PSCRN	70		
-#define KB_SCRLK	71		
-#define KB_PAUSE	72
-#define KB_INS		73	
-#define KB_HOME		74
-#define KB_PGUP		75
-#define KB_DEL		76
-#define KB_END		77
-#define KB_PGDN		78	
-#define KB_RIGHT	79
-#define KB_LEFT		80
-#define KB_DOWN		81
-#define KB_UP		82
-#define KB_NUMLK	83
-#define KP_SLASH	84	
-#define KP_ASTRX	85	
-#define KP_MINUS	86	
-#define KP_PLUS		87	
-#define KP_ENTER	88	
-#define KP_1		89
-#define KP_2		90
-#define KP_3		91	
-#define KP_4		92	
-#define KP_5		93	
-#define KP_6		94	
-#define KP_7		95	
-#define KP_8		96	
-#define KP_9		97	
-#define KP_0		98		
-#define KP_DOT		99	
+#define TYPE_KEY				0
+#define KB_NONE					0
+#define	KB_ERROR_ROLLOVER		0x01
+#define	KB_POST_FAIL			0x02
+#define	KB_ERROR_UNDEFINED		0x03
+#define KB_A					0x04
+#define KB_B					0x05
+#define KB_C					0x06
+#define KB_D					0x07
+#define KB_E					0x08
+#define KB_F					0x09
+#define KB_G					0x0A
+#define KB_H					0x0B
+#define KB_I					0x0C
+#define KB_J					0x0D
+#define KB_K					0x0E
+#define KB_L					0x0F
+#define KB_M					0x10
+#define KB_N					0x11
+#define KB_O					0x12
+#define KB_P					0x13
+#define KB_Q					0x14
+#define KB_R					0x15
+#define KB_S					0x16
+#define KB_T					0x17
+#define KB_U					0x18
+#define KB_V					0x19
+#define KB_W					0x1A
+#define KB_X					0x1B
+#define KB_Y					0x1C
+#define KB_Z					0x1D
+#define KB_1					0x1E
+#define KB_2					0x1F
+#define KB_3					0x20
+#define KB_4					0x21
+#define KB_5					0x22
+#define KB_6					0x23
+#define KB_7					0x24
+#define KB_8					0x25
+#define KB_9					0x26
+#define KB_0					0x27
+#define KB_ENTER				0x28	
+#define KB_ESC					0x29
+#define KB_BKSPC				0x2A	
+#define KB_TAB					0x2B
+#define KB_SPACE				0x2C	
+#define KB_MINUS				0x2D
+#define KB_EQUAL				0x2E
+#define KB_LBRCE				0x2F
+#define KB_RBRCE				0x30
+#define KB_BSLSH				0x31
+#define KB_NUMBER				0x32 // Non-US # and ~ 
+#define KB_SMCLN				0x33
+#define KB_QUOTE				0x34
+#define KB_TILDE				0x35
+#define KB_COMMA				0x36
+#define KB_DOT					0x37
+#define KB_SLASH				0x38
+#define KB_CAPLK				0x39
+#define KB_F1					0x3A
+#define KB_F2					0x3B
+#define KB_F3					0x3C
+#define KB_F4					0x3D
+#define KB_F5					0x3E
+#define KB_F6					0x3F
+#define KB_F7					0x40
+#define KB_F8					0x41
+#define KB_F9					0x42
+#define KB_F10					0x43
+#define KB_F11					0x44
+#define KB_F12					0x45
+#define KB_PSCRN				0x46		
+#define KB_SCRLK				0x47		
+#define KB_PAUSE				0x48
+#define KB_INS					0x49	
+#define KB_HOME					0x4A
+#define KB_PGUP					0x4B
+#define KB_DEL					0x4C
+#define KB_END					0x4D
+#define KB_PGDN					0x4E	
+#define KB_RIGHT				0x4F
+#define KB_LEFT					0x50
+#define KB_DOWN					0x51
+#define KB_UP					0x52
+#define KB_NUMLK				0x53
+#define KP_SLASH				0x54	
+#define KP_ASTRX				0x55	
+#define KP_MINUS				0x56	
+#define KP_PLUS					0x57	
+#define KP_ENTER				0x58	
+#define KP_1					0x59
+#define KP_2					0x5A
+#define KP_3					0x5B	
+#define KP_4					0x5C	
+#define KP_5					0x5D	
+#define KP_6					0x5E	
+#define KP_7					0x5F	
+#define KP_8					0x60	
+#define KP_9					0x61
+#define KP_0					0x62	
+#define KP_DOT					0x63
+#define KB_PIPE 				0x64
+#define KB_APP					0x65
+#define KB_POWER 				0x66
+#define KP_EQUAL				0x67
+#define KB_F13					0x68
+#define KB_F14					0x69
+#define KB_F15					0x6A
+#define KB_F16					0x6B
+#define KB_F17					0x6C
+#define KB_F18					0x6D
+#define KB_F19					0x6E
+#define KB_F20					0x6F
+#define KB_F21					0x70
+#define KB_F22					0x71
+#define KB_F23					0x72
+#define KB_F24					0x73
+#define KB_EXECUTE				0x74
+#define KB_HELP					0x75
+#define KB_MENU					0x76
+#define KB_SELECT				0x77
+#define KB_STOP					0x78
+#define KB_AGAIN				0x79
+#define KB_UNDO					0x7A
+#define KB_CUT					0x7B
+#define KB_COPY					0x7C
+#define KB_PASTE				0x7D
+#define KB_FIND					0x7E
+#define KB_MUTE					0x7F
+#define KB_VOLUMEUP				0x80
+#define KB_VOLUMEDOWN			0x81
+#define KB_LOCKINGCAPSLOCK		0x82
+#define KB_LOCKINGNUMLOCK		0x83
+#define KB_LOCKINGSCROLLLOCK	0x84
+#define KP_COMMA				0x85
+#define KP_EQUALSIGN			0x86
+#define KB_INTERNATIONAL1		0x87
+#define KB_INTERNATIONAL2		0x88
+#define KB_INTERNATIONAL3		0x89
+#define KB_INTERNATIONAL4		0x8A
+#define KB_INTERNATIONAL5		0x8B
+#define KB_INTERNATIONAL6		0x8C
+#define KB_INTERNATIONAL7		0x8D
+#define KB_INTERNATIONAL8		0x8E
+#define KB_INTERNATIONAL9		0x8F
+#define KB_LANG1				0x90
+#define KB_LANG2				0x91
+#define KB_LANG3				0x92
+#define KB_LANG4				0x93
+#define KB_LANG5				0x94
+#define KB_LANG6				0x95
+#define KB_LANG7				0x96
+#define KB_LANG8				0x97
+#define KB_LANG9				0x98
+#define KB_ALTERNATE_ERASE		0x99
+#define KB_SYSREQ				0x9A
+#define KB_CANCEL				0x9B
+#define KB_CLEAR				0x9C
+#define KB_PRIOR				0x9D
+#define KB_RETURN				0x9E
+#define KB_SEPARATOR			0x9F
+#define KB_OUT					0xA0
+#define KB_OPER					0xA1
+#define KB_CLEAR_AGAIN			0xA2
+#define KB_CRSEL				0xA3
+#define KB_EXSEL				0xA4
 
-#define KB_PIPE 	100
-#define KB_APP		101
-#define KB_POWER 	102
-#define KP_EQUAL	103
+#define KB_RESERVED1			0xA5-0xCF	
 
-#define KB_F13 104
-#define KB_F14 105
-#define KB_F15 106
-#define KB_F16 107
-#define KB_F17 108
-#define KB_F18 109
-#define KB_F19 110
-#define KB_F20 111
-#define KB_F21 112
-#define KB_F22 113
-#define KB_F23 114
-#define KB_F24 115
+#define KP_00					0xB0
+#define KP_000					0xB1
+#define KB_THOUSANDS_SEPARATOR	0xB2
+#define KB_DECIMAL_SEPARATOR	0xB3
+#define KB_CURRENCY_UNIT		0xB4
+#define KB_CURRENCY_SUBUNIT		0xB5
+#define KP_LEFT_PAREN			0xB6
+#define KP_RIGHT_PAREN			0xB7
+#define KP_LEFT_BRACE			0xB8
+#define KP_RIGHT_BRACE			0xB9
+#define KP_TAB					0xBA
+#define KP_BACKSPACE			0xBB
+#define KP_A					0xBC
+#define KP_B					0xBD
+#define KP_C					0xBE
+#define KP_D					0xBF
+#define KP_E					0xC0
+#define KP_F					0xC1
+#define KP_XOR					0xC2
+#define KP_POWER				0xC3
+#define KP_MOD					0xC4
+#define KP_LESS					0xC5
+#define KP_GREATER				0xC6
+#define KP_BIT_AND				0xC7
+#define KP_AND					0xC8
+#define KP_BIT_OR				0xC9
+#define KP_OR					0xCA
+#define KP_COLON				0xCB
+#define KP_NUMBER				0xCC
+#define KP_SPACE				0xCD
+#define KP_AT					0xCE
+#define KP_NOT					0xCF
+#define KP_MEMORY_STORE			0xD0
+#define KP_MEMORY_RECALL		0xD1
+#define KP_MEMORY_CLEAR			0xD2
+#define KP_MEMORY_ADD			0xD3
+#define KP_MEMORY_SUBTRACT		0xD4
+#define KP_MEMORY_MULTIPLY		0xD5
+#define KP_MEMORY_DIVIDE		0xD6
+#define KP_PLUSMINUS			0xD7
+#define KP_CLEAR				0xD8
+#define KP_CLEAR_ENTRY			0xD9
+#define KP_BINARY				0xDA
+#define KP_OCTAL				0xDB
+#define KP_DECIMAL				0xDC
+#define KP_HEXADECIMAL			0xDD
 
-#define KB_EXECUTE 116
-#define KB_HELP 117
-#define KB_MENU 118
-#define KB_SELECT 119
-#define KB_STOP 120
-#define KB_AGAIN 121
+#define KB_RESERVED2			0xDE-0xDF
 
-#define KB_UNDO 122
-#define KB_CUT 123
-#define KB_COPY 124
-#define KB_PASTE 125
-#define KB_FIND 126
+/* Do not uncomment, included only */
+/* for reference				   */
+/*************************************
+#define KB_LEFT_CTRL			0xE0 *
+#define KB_LEFT_SHIFT			0xE1 *
+#define KB_LEFT_ALT				0xE2 *
+#define KB_LEFT_GUI				0xE3 *
+#define KB_RIGHT_CTRL			0xE4 *
+#define KB_RIGHT_SHIFT			0xE5 *
+#define KB_RIGHT_ALT			0xE6 *
+#define KB_RIGHT_GUI			0xE7 *
+*************************************/
 
-#define KB_MUTE 127
-#define KB_VOLUMEUP 128
-#define KB_VOLUMEDOWN 129
-
-#define KB_LOCKINGCAPSLOCK 130
-#define KB_LOCKINGNUMLOCK 131
-#define KB_LOCKINGSCROLLLOCK 132
-
-#define KP_COMMA 133
-#define KP_EQUALSIGN 134
-
-#define KB_INTERNATIONAL1 135
-#define KB_INTERNATIONAL2 136
-#define KB_INTERNATIONAL3 137
-#define KB_INTERNATIONAL4 138
-#define KB_INTERNATIONAL5 139
-#define KB_INTERNATIONAL6 140
-#define KB_INTERNATIONAL7 141
-#define KB_INTERNATIONAL8 142
-#define KB_INTERNATIONAL9 143
-
-#define KB_LANG1 144
-#define KB_LANG2 145
-#define KB_LANG3 146
-#define KB_LANG4 147
-#define KB_LANG5 148
-#define KB_LANG6 149
-#define KB_LANG7 150
-#define KB_LANG8 151
-#define KB_LANG9 152
-
-#define KB_ALTERNATE_ERASE 153
-#define KB_SYSREQ 154
-#define KB_CANCEL 155
-#define KB_CLEAR 156
-#define KB_PRIOR 157
-#define KB_RETURN 158
-#define KB_SEPARATOR 159
-#define KB_OUT 160
-#define KB_OPER 161
-#define KB_CLEAR_AGAIN 162
-#define KB_CRSEL 163
-#define KB_EXSEL 164
-
-#define KB_RESERVED2 165-175
-
-#define KP_00 176
-#define KP_000 177
-
-#define KB_THOUSANDS_SEPARATOR 178
-#define KB_DECIMAL_SEPARATOR 179
-#define KB_CURRENCY_UNIT 180
-#define KB_CURRENCY_SUBUNIT 181
-
-#define KP_LEFT_PAREN 182
-#define KP_RIGHT_PAREN 183
-#define KP_LEFT_BRACE 184
-#define KP_RIGHT_BRACE 185
-
-#define KP_TAB 186
-#define KP_BACKSPACE 187
-
-#define KP_A 188
-#define KP_B 189
-#define KP_C 190
-#define KP_D 191
-#define KP_E 192
-#define KP_F 193
-
-#define KP_XOR 194
-#define KP_POWER 195
-#define KP_MOD 196
-#define KP_LESS 197
-#define KP_GREATER 198
-#define KP_BIT_AND 199
-#define KP_AND 200
-#define KP_BIT_OR 201
-#define KP_OR 202
-#define KP_COLON 203
-#define KP_NUMBER 204
-#define KP_SPACE 205
-#define KP_AT 206
-#define KP_NOT 207
-
-#define KP_MEMORY_STORE 208
-#define KP_MEMORY_RECALL 209
-#define KP_MEMORY_CLEAR 210
-#define KP_MEMORY_ADD 211
-#define KP_MEMORY_SUBTRACT 212
-#define KP_MEMORY_MULTIPLY 213
-#define KP_MEMORY_DIVIDE 214
-#define KP_PLUSMINUS 215
-
-#define KP_CLEAR 216
-#define KP_CLEAR_ENTRY 217
-#define KP_BINARY 218
-#define KP_OCTAL 219
-#define KP_DECIMAL 220
-#define KP_HEXADECIMAL 221
-
-#define KB_RESERVED3 222-223
+#define KB_RESERVED3			0xE8-FFFF
