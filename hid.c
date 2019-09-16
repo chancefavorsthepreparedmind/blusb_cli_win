@@ -20,19 +20,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 uint16_t read_matrix_pos()
 {
-	static hid_ctrl_report_t ctrl;
+	static hid_ctrl_report_t hid_ctrl;
 	static uint8_t buffer_last[8] = { 0 }, buffer_changed = 0;
 	uint8_t i = 0;
 
-	ctrl.id = HID_REPORT_ID_FEATURE_READ_MATRIX;
+	hid_ctrl.id = HID_REPORT_ID_FEATURE_READ_MATRIX;
 
 	libusb_control_transfer(handle, LIBUSB_RECIPIENT_INTERFACE | LIBUSB_ENDPOINT_IN | LIBUSB_REQUEST_TYPE_CLASS,
 		LIBUSB_REQUEST_GET_REPORT, LIBUSB_REQUEST_FEATURE_REPORT | HID_REPORT_ID_FEATURE_READ_MATRIX,
-		0, ctrl.buffer, sizeof(ctrl.buffer), 1000);
+		0, hid_ctrl.buffer, sizeof(hid_ctrl.buffer), 1000);
 
-	if (ctrl.buffer[7])
+	if (hid_ctrl.buffer[7])
 		for (i = 0; i < 2; i++)
-			if (ctrl.buffer[i] ^ buffer_last[i])
+			if (hid_ctrl.buffer[i] ^ buffer_last[i])
 			{
 				buffer_changed = 1;
 				break;
@@ -42,13 +42,13 @@ uint16_t read_matrix_pos()
 	{
 		buffer_changed = 0;
 		for (i = 0; i < 2; i++)
-			buffer_last[i] = ctrl.buffer[i];
+			buffer_last[i] = hid_ctrl.buffer[i];
 		if (verbose)
 		{
 			printf("\r%24c", '\0');
-			printf("\rRow: %d Column: %d", ctrl.buffer[0], ctrl.buffer[1]);
+			printf("\rRow: %d Column: %d", hid_ctrl.buffer[0], hid_ctrl.buffer[1]);
 		}
-		return ctrl.buffer[0] | ctrl.buffer[1] << 8;			// return row, col
+		return hid_ctrl.buffer[0] | hid_ctrl.buffer[1] << 8;			// return row, col
 	}
 	else
 		return 0xffff;
@@ -56,39 +56,39 @@ uint16_t read_matrix_pos()
 
 void read_version()
 {
-	static hid_ctrl_report_t ctrl;
+	static hid_ctrl_report_t hid_ctrl;
 
-	ctrl.id = HID_REPORT_ID_FEATURE_READ_VERSION;
+	hid_ctrl.id = HID_REPORT_ID_FEATURE_READ_VERSION;
 
 	libusb_control_transfer(handle, LIBUSB_RECIPIENT_INTERFACE | LIBUSB_ENDPOINT_IN | LIBUSB_REQUEST_TYPE_CLASS,
 		LIBUSB_REQUEST_GET_REPORT, LIBUSB_REQUEST_FEATURE_REPORT | HID_REPORT_ID_FEATURE_READ_VERSION,
-		0, ctrl.buffer, sizeof(ctrl.buffer), 1000);
+		0, hid_ctrl.buffer, sizeof(hid_ctrl.buffer), 1000);
 
-	printf("Firmware Version: %u.%u\n", ctrl.buffer[0], ctrl.buffer[1]);
+	printf("Firmware Version: %u.%u\n", hid_ctrl.buffer[0], hid_ctrl.buffer[1]);
 
 }
 
 void read_pwm()
 {
-	static hid_ctrl_report_t ctrl;
+	static hid_ctrl_report_t hid_ctrl;
 
-	ctrl.id = HID_REPORT_ID_FEATURE_READ_WRITE_BR;
+	hid_ctrl.id = HID_REPORT_ID_FEATURE_READ_WRITE_BR;
 
 	libusb_control_transfer(handle, LIBUSB_RECIPIENT_INTERFACE | LIBUSB_ENDPOINT_IN | LIBUSB_REQUEST_TYPE_CLASS,
 		LIBUSB_REQUEST_GET_REPORT, LIBUSB_REQUEST_FEATURE_REPORT | HID_REPORT_ID_FEATURE_READ_WRITE_BR,
-		0, ctrl.buffer, sizeof(ctrl.buffer), 1000);
+		0, hid_ctrl.buffer, sizeof(hid_ctrl.buffer), 1000);
 
-	printf("PWM_USB:%-5u PWM_BT:%u\n", ctrl.buffer[0], ctrl.buffer[1]);
+	printf("PWM_USB:%-5u PWM_BT:%u\n", hid_ctrl.buffer[0], hid_ctrl.buffer[1]);
 
 }
 
 void write_pwm(int pwm_USB, int pwm_BT)
 {
-	static hid_ctrl_report_t ctrl;
+	static hid_ctrl_report_t hid_ctrl;
 
-	memset(ctrl.buffer, 0, sizeof(ctrl.buffer));
+	memset(hid_ctrl.buffer, 0, sizeof(hid_ctrl.buffer));
 
-	ctrl.id = HID_REPORT_ID_FEATURE_READ_WRITE_BR;
+	hid_ctrl.id = HID_REPORT_ID_FEATURE_READ_WRITE_BR;
 
 	if ((pwm_USB < 0 || pwm_USB > 255) || (pwm_BT < 0 || pwm_BT > 255))
 	{
@@ -96,38 +96,38 @@ void write_pwm(int pwm_USB, int pwm_BT)
 		return;
 	}
 
-	ctrl.payload[0] = (uint8_t)pwm_USB;
-	ctrl.payload[1] = (uint8_t)pwm_BT;
+	hid_ctrl.payload[0] = (uint8_t)pwm_USB;
+	hid_ctrl.payload[1] = (uint8_t)pwm_BT;
 
 	printf("PWM_USB:%-5u PWM_BT:%u\n", pwm_USB, pwm_BT);
 
 	libusb_control_transfer(handle, LIBUSB_RECIPIENT_INTERFACE | LIBUSB_ENDPOINT_OUT | LIBUSB_REQUEST_TYPE_CLASS,
 		LIBUSB_REQUEST_SET_REPORT, LIBUSB_REQUEST_FEATURE_REPORT | HID_REPORT_ID_FEATURE_READ_WRITE_BR,
-		0, ctrl.buffer, sizeof(ctrl.buffer), 1000);
+		0, hid_ctrl.buffer, sizeof(hid_ctrl.buffer), 1000);
 
 }
 
 void read_debounce()
 {
-	static hid_ctrl_report_t ctrl;
+	static hid_ctrl_report_t hid_ctrl;
 
-	ctrl.id = HID_REPORT_ID_FEATURE_READ_WRITE_DEBOUNCE;
+	hid_ctrl.id = HID_REPORT_ID_FEATURE_READ_WRITE_DEBOUNCE;
 
 	libusb_control_transfer(handle, LIBUSB_RECIPIENT_INTERFACE | LIBUSB_ENDPOINT_IN | LIBUSB_REQUEST_TYPE_CLASS,
 		LIBUSB_REQUEST_GET_REPORT, LIBUSB_REQUEST_FEATURE_REPORT | HID_REPORT_ID_FEATURE_READ_WRITE_DEBOUNCE,
-		0, ctrl.buffer, sizeof(ctrl.buffer), 1000);
+		0, hid_ctrl.buffer, sizeof(hid_ctrl.buffer), 1000);
 
-	printf("Debounce time: %u ms\n", ctrl.buffer[0]);
+	printf("Debounce time: %u ms\n", hid_ctrl.buffer[0]);
 
 }
 
 void write_debounce(int debounce_value)
 {
-	static hid_ctrl_report_t ctrl;
+	static hid_ctrl_report_t hid_ctrl;
 
-	memset(ctrl.buffer, 0, sizeof(ctrl.buffer));
+	memset(hid_ctrl.buffer, 0, sizeof(hid_ctrl.buffer));
 
-	ctrl.id = HID_REPORT_ID_FEATURE_READ_WRITE_DEBOUNCE;
+	hid_ctrl.id = HID_REPORT_ID_FEATURE_READ_WRITE_DEBOUNCE;
 
 	if ((debounce_value < 1 || debounce_value > 255))
 	{
@@ -135,13 +135,13 @@ void write_debounce(int debounce_value)
 		return;
 	}
 
-	ctrl.payload[0] = (uint8_t)debounce_value;
+	hid_ctrl.payload[0] = (uint8_t)debounce_value;
 
 	printf("Debounce time: %u ms\n", debounce_value);
 
 	libusb_control_transfer(handle, LIBUSB_RECIPIENT_INTERFACE | LIBUSB_ENDPOINT_OUT | LIBUSB_REQUEST_TYPE_CLASS,
 		LIBUSB_REQUEST_SET_REPORT, LIBUSB_REQUEST_FEATURE_REPORT | HID_REPORT_ID_FEATURE_READ_WRITE_DEBOUNCE,
-		0, ctrl.buffer, sizeof(ctrl.buffer), 1000);
+		0, hid_ctrl.buffer, sizeof(hid_ctrl.buffer), 1000);
 }
 
 uint8_t* read_macros()
@@ -419,25 +419,25 @@ void update_firmware(uint8_t *hexfile_namestring)
 
 void enter_bootloader()
 {
-	static hid_ctrl_report_t ctrl;
-	memset(ctrl.buffer, 0, sizeof(ctrl.buffer));
-	ctrl.id = HID_REPORT_ID_FEATURE_ENTER_BOOTLOADER;
+	static hid_ctrl_report_t hid_ctrl;
+	memset(hid_ctrl.buffer, 0, sizeof(hid_ctrl.buffer));
+	hid_ctrl.id = HID_REPORT_ID_FEATURE_ENTER_BOOTLOADER;
 
 	printf("Entering bootloader\n\r");
 	libusb_control_transfer(handle, LIBUSB_ENDPOINT_OUT | LIBUSB_REQUEST_TYPE_CLASS | \
 		LIBUSB_RECIPIENT_INTERFACE, LIBUSB_REQUEST_SET_REPORT, LIBUSB_REQUEST_FEATURE_REPORT | \
-		HID_REPORT_ID_FEATURE_ENTER_BOOTLOADER, 0, ctrl.buffer, sizeof(ctrl.buffer), 1000);
+		HID_REPORT_ID_FEATURE_ENTER_BOOTLOADER, 0, hid_ctrl.buffer, sizeof(hid_ctrl.buffer), 1000);
 }
 
 void exit_bootloader()
 {
-	static hid_ctrl_report_t ctrl;
-	memset(ctrl.buffer, 0, sizeof(ctrl.buffer));
-	ctrl.id = HID_REPORT_ID_EXIT_BOOTLOADER;
+	static hid_ctrl_report_t hid_ctrl;
+	memset(hid_ctrl.buffer, 0, sizeof(hid_ctrl.buffer));
+	hid_ctrl.id = HID_REPORT_ID_EXIT_BOOTLOADER;
 
 	libusb_control_transfer(handle, LIBUSB_ENDPOINT_OUT | LIBUSB_REQUEST_TYPE_CLASS |
 		LIBUSB_RECIPIENT_INTERFACE, LIBUSB_REQUEST_SET_REPORT, LIBUSB_REQUEST_FEATURE_REPORT |
-		HID_REPORT_ID_EXIT_BOOTLOADER, 0, ctrl.buffer, sizeof(ctrl.buffer), 1000);
+		HID_REPORT_ID_EXIT_BOOTLOADER, 0, hid_ctrl.buffer, sizeof(hid_ctrl.buffer), 1000);
 
 	printf("Exiting bootloader\n\r");
 }
