@@ -78,7 +78,7 @@ Displays all layers currently configured, prompt for a file name and save to fil
 You can format the output by (not) providing optional parameter *-names*. Default output is a table of hexadecimal key code values stored at each position of the key matrix. If *-names* is provided, key code names are displayed instead of hexadecimal values. Make sure your command line window provides enough horizontal spacing or the table will not be displayed correctly when names are displayed instead of numbers.  
 If optional parameter *-no_print* is provided, layout data will only be displayed and not saved to a file.  
 The order of the list of optional parameters does not matter.  
-Example: `-read_layout -no_print -names` will work just the same as `-read_layout -names no_print`.   
+Example: `-read_layout -no_print -names` will work just the same as `-read_layout -names -no_print`.   
 
 `-write_layout`*`filename`*  
 Transfers the layout data contained in *filename* to the controller's flash memory.
@@ -91,7 +91,7 @@ Run layout configuration wizard to create a new layout from scratch or, if optio
 Display the version of the firmware currently installed on the controller.
 
 `-update_firmware`*`filename.hex`*  
-Performs a firmware update based on the firmware data contained in *filename.hex*. Once all firmware data has been transferred, you will be prompted to press a key to reboot the device.
+Performs a firmware update based on the firmware data contained in *filename.hex*. Once all firmware data has been transferred, you will be prompted to press a key to reboot the device.  
 Example: `-update_firmware newversion.hex`  
 
 `-layout_dec_to_hex`*`filename`*  
