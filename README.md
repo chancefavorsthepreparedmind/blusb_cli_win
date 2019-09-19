@@ -1,4 +1,11 @@
+![Image of Blusb Logo](https://deskthority.net/download/file.php?id=52810)
+
 # Blusb Software Operating Instructions
+
+This is the main repository for the Windows version of the command line interface.
+If you are looking for the cross-platform GUI, go to https://github.com/Arakula/blusb_gui
+If you are looking for the Mac OS port of this CLI, go to https://github.com/quintusl/mblusb
+If you are looking for the Linux port of this CLI, go to https://github.com/marcvk/blusb
 
 #### Dependencies
 
