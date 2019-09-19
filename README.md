@@ -1,5 +1,7 @@
 ![Image of Blusb Logo](https://deskthority.net/download/file.php?id=52810)
 
+If you are looking for the conversion guide and basic operating instructions, open `blusb_conversion_operators_guide.md` in the file explorer window above.
+
 # Blusb Software Operating Instructions
 
 This is the main repository for the Windows version of the command line interface.
