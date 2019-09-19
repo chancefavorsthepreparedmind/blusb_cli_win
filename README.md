@@ -9,39 +9,83 @@ Reference: https://libusb.info/
 
 This is the default usage statement displayed when no valid argument has been provided. The commands are mostly self-explanatory. I have added explanatory remarks for clarification.
 
-`+++ Blusb configuration tool +++`
+    +++ Blusb configuration tool +++
 
-`Usage: blusb_cmd [-option] [-optional parameter] [filename]`
+    Usage: blusb_cmd [-option] [-optional parameter] [filename]
 
-`Options:`
+    Options:
 
-`-read_matrix`
-
-`-read_pwm`
--write_pwm [value_USB value_BT] (Valid range: 0-255)  
--read_debounce  
--write_debounce [value] (Valid range: 1-255)  
--read_macros  
--write_macros [filename]  
--read_layout [-no_print] [-names]  
--write_layout [filename]  
--configure_layout [-update filename]  
--read_version  
--update_firmware [filename]  
--enter_bootloader  
--exit_bootloader  
--layout_dec_to_hex [filename]  
--macros_dec_to_hex [filename]  
--h, --help, /?  
+    -read_matrix
+    -read_pwm
+    -write_pwm [value_USB value_BT] (Valid range: 0-255)  
+    -read_debounce  
+    -write_debounce [value] (Valid range: 1-255)  
+    -read_macros  
+    -write_macros [filename]  
+    -read_layout [-no_print] [-names]  
+    -write_layout [filename]  
+    -configure_layout [-update filename]  
+    -read_version  
+    -update_firmware [filename]  
+    -enter_bootloader  
+    -exit_bootloader  
+    -layout_dec_to_hex [filename]  
+    -macros_dec_to_hex [filename]  
+    -h, --help, /?
 
 #### Explanation
 
 `-read_matrix`  
-Display row and column of a key pressed.
+Displays row and column of a key pressed.
 
+`-read_pwm`  
+Displays brightness value for USB mode and BT mode.
 
-`-read_pwm`
+`-write_pwm`  
+Writes brightness value for USB mode and BT mode.
+Example: `-write_pwm 50 150` will set the brightness values to 50 in USB mode and 150 in BT mode.
 
+`-read_debounce`  
+Displays current debounce period in ms.
+
+`-write_debounce`  
+Sets the debounce period in ms to a value between 0 and 255.
+Example: `-write_debounce 15` will set the debounce period to 15ms.
+
+`-read_macros`  
+Displays the macro table currently stored in the EEPROM and prompts to enter a file name to store the macro table in a file. If no macros have been programmed yet, no table is displayed.
+
+`-write_macros *filename*`  
+Loads a macro table stored in *filename*.
+Example: `-write_macros randommacrotable.dat` will transfer the macro table stored in *randommacrotable.dat* to the controller's EEPROM.
+
+`-read_layout *-no_print -names*`  
+Displays all layers currently configured, prompt for a file name and save to file.
+
+You can format the output by (not) providing optional parameter *-names*. Default output is a table of hexadecimal key code values stored at each position of the key matrix. If *-names* is provided, key code names are displayed instead of hexadecimal values. Make sure your command line window provides enough horizontal spacing or the table will not be displayed correctly when names are displayed instead of numbers.
+
+If optional parameter *-no_print* is provided, layout data will only be displayed and not saved to a file.
+
+The order of the list of optional parameters does not matter.
+
+Example: `-read_layout -no_print -names` will work just the same as `-read_layout -names no_print`.   
+
+`-write_layout *filename*`  
+Transfers the layout data contained in *filename* to the controller's flash memory.
+Example: `-write_layout randomlayoutfile.dat` will transfer the layout data contained in *randomlayoutfile.dat* to the controller.
+
+`-configure_layout *-update filename*`  
+Run layout configuration wizard to create a new layout from scratch or, if optional parameter *-update* is provided, update the layout stored in *filename*.
+
+`-read_version`  
+Display the version of the firmware currently installed on the controller.
+
+`-update_firmware *filename.hex*`  
+Performs a firmware update based on the firmware data contained in *filename.hex*. Once all firmware data has been transferred, you will be prompted to press a key to reboot the device.
+Example: `-update_firmware newversion.hex`  
+
+`-layout_dec_to_hex *filename*`  
+If you have a layout file that stores key codes in decimal format, you can use this convenience function to convert the values to hexadecimal format and store them in a new file. `-macros_dec_to_hex` serves the same purpose with regard to files containing macro tables.
 
 #### Layout and macro configuration
 
@@ -56,9 +100,7 @@ Unless you need to reconfigure all keys, it will suffice to edit the default key
 
 For every layer, there are 160 values that comprise the key matrix. The key matrix consists of a maximum of 20 columns and 8 rows, i.e. for each row there are 20 columns, which gives 8x20 positions in total.
 We will start counting from 0, so the first row is row 0, the last row is row 7, and likewise the first column is column 0, the last column is column 19.
-The first 20 positions belong to row 0, the second 20 positions belong to row 1, the next 20 belong to row 2, and so forth. If you need to change a couple of values, look up the given values in the layout header file (layout.h). This file contains the values representing all the keys that can be mapped. All you need do is change a value, save the file and transfer the contents of the file to the controller using the CLI. Like so:
-
-> blusb_cmd -write_layout yourlayout.dat
+The first 20 positions belong to row 0, the second 20 positions belong to row 1, the next 20 belong to row 2, and so forth. If you need to change a couple of values, look up the given values in the layout header file (layout.h). This file contains the values representing all the keys that can be mapped. All you need do is change a value, save the file and transfer the contents of the file to the controller using the CLI.
 
 #### Understanding the internal representation of special key codes (s.a. modifiers)
 
