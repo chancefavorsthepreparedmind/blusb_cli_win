@@ -103,13 +103,13 @@ The first 20 positions belong to row 0, the second 20 positions belong to row 1,
 
 There are special key codes that are 16 bit in length, e.g. the modifier keys. The lower byte represents the key type (to determine the position of the key value within the HID key report to be sent by the microcontroller to the USB host).
 For modifiers, the higher byte is always 0x01 (hexadecimal). The Alt_left key, for instance, is represented by the value 0x04, hence the complete key code generated internally by the microcontroller will be 0x0104.
-This scheme is not intuitive and may seem confusing, mainly due to the following two aspects: the higher byte for character keys is always 0x00, i.e. zero, while it is non-zero for other key types, for one. Second, the representation of modifier keys in the key map file is not identical with the value given in the HUT table (which the layout header file, layout.h is based on). 
-Macro keys are defined according to the same scheme as modifier keys, i.e. they are 16 bit in length (cp. layout.h).
+This scheme is not intuitive and may seem confusing, mainly due to the following two aspects: the higher byte for character keys is always 0x00, i.e. zero, while it is non-zero for other key types, for one. Second, the representation of modifier keys in the key map file is not identical with the value given in the HUT table (which the layout header file, `layout.h` is based on). 
+Macro keys are defined according to the same scheme as modifier keys, i.e. they are 16 bit in length (cp. `layout.h`).
 
 Alternatively, there is also the possibility of loading an existing key map file into memory and using the CLI to change the given key map. For this method, a second keyboard is necessary or you will not be able to enter keys that have not been mapped yet.
 Any changes made with the CLI are not rendered effective at runtime. Configuring a key map and transfering of a key map to the controller comprise two consecutive steps. This precludes the event of ending up with a garbled key map if things go awry.
 
-Starting the CLI by typing "blusb_cmd -configure_layout [keymap_filename.bin]" will load the specified key map file into memory. After the desired changes have been made, the new configuration can be saved to a new file or the existing file may be overwritten.
+Starting the CLI by typing `blusb_cmd -configure_layout`*`keymap_filename.bin`* will load the specified key map file into memory. After the desired changes have been made, the new configuration can be saved to a new file or the existing file may be overwritten.
 
 The CLI also allows tweaking the debounce period. The default value is 7ms. You can probably get away with less, say, 3ms. Conversely, if you should encounter bouncing at 7ms, you can also crank it up. For instance, Unicomp recommends 15ms.
 *Note: the ms value given does not represent the actual or total delay that occurs from when a key is pressed until a key press is registered. The actual delay depends on other factors besides the debounce period.*
