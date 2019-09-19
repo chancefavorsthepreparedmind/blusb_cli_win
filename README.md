@@ -9,14 +9,15 @@ Reference: https://libusb.info/
 
 This is the default usage statement displayed when no valid argument has been provided. The commands are mostly self-explanatory. I have added explanatory remarks for clarification.
 
-`+++ Blusb configuration tool +++
+`+++ Blusb configuration tool +++`
 
-Usage: blusb_cmd [-option] [-optional parameter] [filename]
+`Usage: blusb_cmd [-option] [-optional parameter] [filename]`
 
-Options:
+`Options:`
 
--read_matrix  
--read_pwm  
+`-read_matrix`
+
+`-read_pwm`
 -write_pwm [value_USB value_BT] (Valid range: 0-255)  
 -read_debounce  
 -write_debounce [value] (Valid range: 1-255)  
@@ -31,7 +32,7 @@ Options:
 -exit_bootloader  
 -layout_dec_to_hex [filename]  
 -macros_dec_to_hex [filename]  
--h, --help, /?`
+-h, --help, /?  
 
 #### Explanation
 
