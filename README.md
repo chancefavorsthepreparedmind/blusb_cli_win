@@ -73,11 +73,11 @@ Loads a macro table stored in *filename*.
 Example: `-write_macros randommacrotable.dat` will transfer the macro table stored in *randommacrotable.dat* to the controller's EEPROM.
 
 `-read_layout`*`-no_print -names`*  
-Displays all layers currently configured, prompt for a file name and save to file.
+Displays all layers currently configured, prompts for file name and saves to a file.
 
 You can format the output by (not) providing optional parameter *-names*. Default output is a table of hexadecimal key code values stored at each position of the key matrix. If *-names* is provided, key code names are displayed instead of hexadecimal values. Make sure your command line window provides enough horizontal spacing or the table will not be displayed correctly when names are displayed instead of numbers.  
 If optional parameter *-no_print* is provided, layout data will only be displayed and not saved to a file.  
-The order of the list of optional parameters does not matter.  
+Optional parameters may be specified in arbitrary order.  
 Example: `-read_layout -no_print -names` will work just the same as `-read_layout -names -no_print`.   
 
 `-write_layout`*`filename`*  
@@ -91,11 +91,11 @@ Run layout configuration wizard to create a new layout from scratch or, if optio
 Display the version of the firmware currently installed on the controller.
 
 `-update_firmware`*`filename.hex`*  
-Performs a firmware update based on the firmware data contained in *filename.hex*. Once all firmware data has been transferred, you will be prompted to press a key to reboot the device.  
+Performs a firmware update based on firmware binary file *filename.hex*. Once all firmware data has been transferred, you will be prompted to press a key to reboot the device.  
 Example: `-update_firmware newversion.hex`  
 
 `-layout_dec_to_hex`*`filename`*  
-If you have a layout file that stores key codes in decimal format, you can use this convenience function to convert the values to hexadecimal format and store them in a new file. `-macros_dec_to_hex` serves the same purpose with regard to files containing macro tables.
+If you have a layout file that represents key codes in decimal format, you can use this convenience function to convert the values to hexadecimal format and store them in a new file. `-macros_dec_to_hex` serves the same purpose with regard to files containing macro tables.
 
 #### Layout and macro configuration
 
