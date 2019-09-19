@@ -81,7 +81,7 @@ The order of the list of optional parameters does not matter.
 Example: `-read_layout -no_print -names` will work just the same as `-read_layout -names -no_print`.   
 
 `-write_layout`*`filename`*  
-Transfers the layout data contained in *filename* to the controller's flash memory.
+Transfers the layout data contained in *filename* to the controller's flash memory.  
 Example: `-write_layout randomlayoutfile.dat` will transfer the layout data contained in *randomlayoutfile.dat* to the controller.
 
 `-configure_layout`*`-update filename`*  
