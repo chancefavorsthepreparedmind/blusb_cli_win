@@ -9,29 +9,38 @@ Reference: https://libusb.info/
 
 This is the default usage statement displayed when no valid argument has been provided. The commands are mostly self-explanatory. I have added explanatory remarks for clarification.
 
->+++ Blusb configuration tool +++
->
->Usage: blusb_cmd [-option] [-optional parameter] [filename]
->
->Options:
->
->-read_matrix  
->-read_pwm  
->-write_pwm [value_USB value_BT] (Valid range: 0-255)  
->-read_debounce  
->-write_debounce [value] (Valid range: 1-255)  
->-read_macros  
->-write_macros [filename]  
->-read_layout [-no_print] [-names]  
->-write_layout [filename]  
->-configure_layout [-update filename]  
->-read_version  
->-update_firmware [filename]  
->-enter_bootloader  
->-exit_bootloader  
->-layout_dec_to_hex [filename]  
->-macros_dec_to_hex [filename]  
->-h, --help, /?  
+`+++ Blusb configuration tool +++
+
+Usage: blusb_cmd [-option] [-optional parameter] [filename]
+
+Options:
+
+-read_matrix  
+-read_pwm  
+-write_pwm [value_USB value_BT] (Valid range: 0-255)  
+-read_debounce  
+-write_debounce [value] (Valid range: 1-255)  
+-read_macros  
+-write_macros [filename]  
+-read_layout [-no_print] [-names]  
+-write_layout [filename]  
+-configure_layout [-update filename]  
+-read_version  
+-update_firmware [filename]  
+-enter_bootloader  
+-exit_bootloader  
+-layout_dec_to_hex [filename]  
+-macros_dec_to_hex [filename]  
+-h, --help, /?`
+
+#### Explanation
+
+`-read_matrix`  
+Display row and column of a key pressed.
+
+
+`-read_pwm`
+
 
 #### Layout and macro configuration
 
@@ -50,7 +59,7 @@ The first 20 positions belong to row 0, the second 20 positions belong to row 1,
 
 > blusb_cmd -write_layout yourlayout.dat
 
-##### Understanding the internal representation of special key codes (s.a. modifiers)
+#### Understanding the internal representation of special key codes (s.a. modifiers)
 
 There are special key codes that are 16 bit in length, e.g. the modifier keys. The lower byte represents the key type (to determine the position of the key value within the HID key report to be sent by the microcontroller to the USB host).
 For modifiers, the higher byte is always 0x01 (hexadecimal). The Alt_left key, for instance, is represented by the value 0x04, hence the complete key code generated internally by the microcontroller will be 0x0104.
