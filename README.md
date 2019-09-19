@@ -42,32 +42,29 @@ Displays row and column of a key pressed.
 Displays brightness value for USB mode and BT mode.
 
 `-write_pwm`  
-Writes brightness value for USB mode and BT mode.
+Writes brightness value for USB mode and BT mode.  
 Example: `-write_pwm 50 150` will set the brightness values to 50 in USB mode and 150 in BT mode.
 
 `-read_debounce`  
 Displays current debounce period in ms.
 
 `-write_debounce`  
-Sets the debounce period in ms to a value between 0 and 255.
+Sets the debounce period in ms to a value between 0 and 255.  
 Example: `-write_debounce 15` will set the debounce period to 15ms.
 
 `-read_macros`  
 Displays the macro table currently stored in the EEPROM and prompts to enter a file name to store the macro table in a file. If no macros have been programmed yet, no table is displayed.
 
 `-write_macros *filename*`  
-Loads a macro table stored in *filename*.
+Loads a macro table stored in *filename*.  
 Example: `-write_macros randommacrotable.dat` will transfer the macro table stored in *randommacrotable.dat* to the controller's EEPROM.
 
 `-read_layout *-no_print -names*`  
 Displays all layers currently configured, prompt for a file name and save to file.
 
-You can format the output by (not) providing optional parameter *-names*. Default output is a table of hexadecimal key code values stored at each position of the key matrix. If *-names* is provided, key code names are displayed instead of hexadecimal values. Make sure your command line window provides enough horizontal spacing or the table will not be displayed correctly when names are displayed instead of numbers.
-
-If optional parameter *-no_print* is provided, layout data will only be displayed and not saved to a file.
-
-The order of the list of optional parameters does not matter.
-
+You can format the output by (not) providing optional parameter *-names*. Default output is a table of hexadecimal key code values stored at each position of the key matrix. If *-names* is provided, key code names are displayed instead of hexadecimal values. Make sure your command line window provides enough horizontal spacing or the table will not be displayed correctly when names are displayed instead of numbers.  
+If optional parameter *-no_print* is provided, layout data will only be displayed and not saved to a file.  
+The order of the list of optional parameters does not matter.  
 Example: `-read_layout -no_print -names` will work just the same as `-read_layout -names no_print`.   
 
 `-write_layout *filename*`  
