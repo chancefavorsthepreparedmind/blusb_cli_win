@@ -14,6 +14,10 @@ If you are looking for the Linux port of this CLI, go to https://github.com/marc
 Libusb is necessary to compile the source. The included static libray is based on Libusb v1.0.23.11397.
 Reference: https://libusb.info/
 
+#### Questions
+
+Just drop me a message at `jaygheezy@hotmail.com`
+
 #### Usage
 
 This is the default usage statement displayed when no valid argument has been provided. The commands are mostly self-explanatory. I have added explanatory remarks for clarification.
