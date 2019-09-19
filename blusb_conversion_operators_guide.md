@@ -1,3 +1,5 @@
+## Blusb Conversion Guide + Operating Instructions
+
 ### Conversion Guide
 
 If you know what you are doing you do not have to follow this guide. Since the controller board is compatible with a variety of M series keyboards, some points may not relate to your particular setup and can be ignored.
