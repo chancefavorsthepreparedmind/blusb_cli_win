@@ -203,6 +203,9 @@ uint8_t *read_layout(bool display_names_flag)
 			LIBUSB_REQUEST_TYPE_CLASS, LIBUSB_REQUEST_GET_REPORT, LIBUSB_REQUEST_FEATURE_REPORT |
 			HID_REPORT_ID_FEATURE_READ_WRITE_LAYOUT, 0, layout.buffer, sizeof(layout.buffer), 1000);
 
+		// check if buffer empty
+		if (layout.num_pgs == 0) break;
+
 		// decrease page count by 1 to calculate correct offset value
 		memcpy(page_buffer + SPM_PAGESIZE*(layout.pg_cnt - 1), layout.page_data, SPM_PAGESIZE);
 
