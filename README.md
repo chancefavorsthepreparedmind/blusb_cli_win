@@ -78,7 +78,7 @@ Displays all layers currently configured, prompts for file name and saves to a f
 You can format the output by (not) providing optional parameter *-names*. Default output is a table of hexadecimal key code values stored at each position of the key matrix. If *-names* is provided, key code names are displayed instead of hexadecimal values. Make sure your command line window provides enough horizontal spacing or the table will not be displayed correctly when names are displayed instead of numbers.  
 If optional parameter *-no_print* is provided, layout data will only be displayed and not saved to a file.  
 Optional parameters may be specified in arbitrary order.  
-Example: `-read_layout -no_print -names` will work just the same as `-read_layout -names -no_print`.   
+Example: `-read_layout`*`-no_print -names` will work just the same as `-read_layout`*`-names -no_print`*.   
 
 `-write_layout`*`filename`*  
 Transfers the layout data contained in *filename* to the controller's flash memory.  
@@ -110,7 +110,7 @@ Unless you need to reconfigure all keys, it will suffice to edit the default key
 
 For every layer, there are 160 values that comprise the key matrix. The key matrix consists of a maximum of 20 columns and 8 rows, i.e. for each row there are 20 columns, which gives 8x20 positions in total.
 We will start counting from 0, so the first row is row 0, the last row is row 7, and likewise the first column is column 0, the last column is column 19.
-The first 20 positions belong to row 0, the second 20 positions belong to row 1, the next 20 belong to row 2, and so forth. If you need to change a couple of values, look up the given values in the layout header file (layout.h). This file contains the values representing all the keys that can be mapped. All you need do is change a value, save the file and transfer the contents of the file to the controller using the CLI.
+The first 20 positions belong to row 0, the second 20 positions belong to row 1, the next 20 belong to row 2, and so forth. If you need to change a couple of values, look up the given values in the layout header file (`layout.h`). This file contains the values representing all the keys that can be mapped. All you need do is change a value, save the file and transfer the contents of the file to the controller using the CLI.
 
 #### Understanding the internal representation of special key codes (s.a. modifiers)
 
