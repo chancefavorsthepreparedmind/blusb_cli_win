@@ -78,7 +78,7 @@ Displays all layers currently configured, prompts for file name and saves to a f
 You can format the output by (not) providing optional parameter *-names*. Default output is a table of hexadecimal key code values stored at each position of the key matrix. If *-names* is provided, key code names are displayed instead of hexadecimal values. Make sure your command line window provides enough horizontal spacing or the table will not be displayed correctly when names are displayed instead of numbers.  
 If optional parameter *-no_print* is provided, layout data will only be displayed and not saved to a file.  
 Optional parameters may be specified in arbitrary order.  
-Example: `-read_layout`*`-no_print -names` will work just the same as `-read_layout`*`-names -no_print`*.   
+Example: `-read_layout`*`-no_print -names`* will work just the same as `-read_layout`*`-names -no_print`*.   
 
 `-write_layout`*`filename`*  
 Transfers the layout data contained in *filename* to the controller's flash memory.  
