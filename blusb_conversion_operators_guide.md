@@ -49,6 +49,10 @@ Putting the device into operation is not a big deal really. The mode of operatio
 Once the module has been successfully paired with a host device, the LED will stop flashing and stay off until the connection is interrupted, in which case the module will start advertising again.
 The red LED indicates the status of the battery charger circuit. On attaching a USB cable, the red LED will light up and the battery will automatically start charging. Once the battery has been fully recharged, the red LED will extinguish. After that, the charger circuit will wait for a voltage drop below a certain threshold before recharging the battery again.
 
+*Note: Try to avoid charging the battery in BT mode (i.e. load sharing). The charger IC cannot correctly determine the charge-end current when a load is present. Thus, recharging the battery while driving a load may result in overcharging and hence damaging the battery. Moreover, the battery charger IC is not designed for driving dynamic loads, s.a. wireless transceivers, which further renders load sharing undesirable.*
+
+*Note: I have not implemented a method to measure the actual voltage level of the battery (yet). Whatever your BT host device purports to know about the current charge status of the battery (e.g. 28% or 31%) is completely meaningless.*
+
 A minor tweak to maximize battery life: the device can be 'shut down' during longer intervals of inactivity (typically at night or for holidays or whatever): when no USB cable is plugged in and USB mode is selected, the controller will go into deep sleep mode after 1 minute, turning off all clocks and thereby reducing current consumption to 305.6 µA. To wake the device up again when in deep sleep mode, a hard reset will be necessary (by flipping the switch or plugging in a USB cable).
 
 #### Special functions
