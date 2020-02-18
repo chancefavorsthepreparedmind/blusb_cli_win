@@ -26,7 +26,7 @@ void print_macrosfile(uint8_t *p_macros_array);
 uint16_t *fill_layout_array(uint8_t nlayers, bool convert_dec_hex);
 uint8_t *fill_macros_array(bool convert_dec_hex);
 uint8_t parse_keyfile(uint8_t *keyfile_namestring);
-void parse_macrosfile(uint8_t *keyfile_namestring);
+bool parse_macrosfile(uint8_t *keyfile_namestring);
 void configure_layout(uint8_t nlayers, uint16_t *p_layout_array_keyfile);
 
 

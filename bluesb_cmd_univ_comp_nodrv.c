@@ -292,12 +292,14 @@ int main(int argc, uchar **argv)
 		{
 			if (argv[2])
 			{
-				parse_macrosfile(argv[2]);
-				printf("\nMacro file parsed.");
-				p_macros_array_macrosfile = fill_macros_array(false);
-				printf("\nMacro array filled.");
-				write_macros(p_macros_array_macrosfile);
-				printf("\nDone.\n");
+				if (parse_macrosfile(argv[2]) == true)
+				{
+					printf("\nMacro file parsed.");
+					p_macros_array_macrosfile = fill_macros_array(false);
+					printf("\nMacro array filled.");
+					write_macros(p_macros_array_macrosfile);
+					printf("\nDone.\n");
+				}
 			}
 			else
 			{

@@ -77,7 +77,7 @@ void print_keyfile(uint16_t *p_layout_array, uint8_t nlayers)
 	FILE *keyfile;
 	uint8_t char_buf[8] = { 0 }, scan_buf[256] = { 0 }, string_buf[256] = { 0 }, string_buf2[5192] = { 0 };
 
-	printf("Enter filename: ");
+	printf("\n\nEnter filename: ");
 	fgets(scan_buf, sizeof(scan_buf), stdin);
 	sscanf(scan_buf, "%s", string_buf);
 
@@ -131,7 +131,7 @@ void print_macrosfile(uint8_t *p_layout_array)
 	FILE *keyfile;
 	char char_buf[8] = { 0 }, scan_buf[256] = { 0 }, string_buf[256] = { 0 }, string_buf2[3072] = { 0 };
 
-	printf("Enter filename: ");
+	printf("\n\nEnter filename: ");
 	fgets(scan_buf, sizeof(scan_buf), stdin);
 	sscanf(scan_buf, "%s", string_buf);
 
@@ -320,7 +320,7 @@ uint8_t parse_keyfile(uint8_t *keyfile_namestring)
 	return nlayers;
 }
 
-void parse_macrosfile(uint8_t *keyfile_namestring)
+bool parse_macrosfile(uint8_t *keyfile_namestring)
 {
 	char chardump = 0;
 	FILE *keyfile;
@@ -336,7 +336,7 @@ void parse_macrosfile(uint8_t *keyfile_namestring)
 	{
 		printf("\n\n");
 		perror("Error opening file");
-		return;
+		return false;
 	}
 	else
 		while (!feof(keyfile))
@@ -349,6 +349,8 @@ void parse_macrosfile(uint8_t *keyfile_namestring)
 		}
 
 	fclose(keyfile);
+
+	return true;
 }
 
 void configure_layout(uint8_t nlayers, uint16_t *p_layout_array_keyfile)
