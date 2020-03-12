@@ -100,7 +100,6 @@ If you have a layout file that represents key codes in decimal format, you can u
 #### Layout and macro configuration
 
 The CLI allows configuration of the key map and macro key table. To change either, it will suffice to edit the example files and then upload them with the CLI.
-
 *Note: By default the macro table is empty. Hence reading the (empty) macro table with the CLI will only return an error message.*
 
 The layout files contain preconfigured key maps. The file type is plain text, the file ending may be chosen arbitrarily.
