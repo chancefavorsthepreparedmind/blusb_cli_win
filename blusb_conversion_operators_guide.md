@@ -16,8 +16,6 @@ Before mounting or glueing anything anywhere, connect the LED PCB and check if t
 
 The included HID Proxy BT dongle will connect to the onboard BT module automatically. Use the corresponding CLI (btusbcmd.exe) to clear pairings if necessary. The CLI also allows to switch the mode of operation from HID proxy to HCI mode. In HCI mode, the dongle will operate as a regular BT dongle that requires the OS system to supply a BT stack and handle pairing and bonding.
 
-*Note: in HID proxy mode, the dongle does not update the LEDs.*
-
 #### Mounting
 
 The replacement controller should fit inside the bottom shell just as the original IBM controller (however, there are slight differences between Model M revisions as far as the holders and seatings are concerned, which can influence fit). Once in place, the PCB should have a snug fit. When seating the PCB, a fair amount of downward force should make the mounting pins slide through the pre-drilled holes. If the mounting pins don't fit inside the pre-drilled holes, don't try to squeeze them in with excessive force. Grab a suitably sized round file and carefully extend the width of the holes. You would want to file off a bit all around the perimeter of the holes. Do a bit, then pause and check if the controller will fit. Do not overdo it or you will make the holes to big and end up with a loose fit.
@@ -29,7 +27,7 @@ I have pre-attached double sided adhesive tape for you on the bottom of the LED 
 
 #### Changing the LED power source
 
-If you have not bought a replacement LED daughterboard and would like to increase the maximum brightness level of the original status LEDs in BT mode, you can bypass the onboard LDO (output: 2.2V) and power the LEDs directly from the battery (output: 3.7V). This will also enable you to use LEDs that require a higher forward-bias voltage (s.a. blue LEDs).
+If you have not bought a replacement LED daughterboard and would like to increase the maximum brightness level of the original status LEDs in BT mode, you can bypass the onboard LDO (output: 2.2V) and power the LEDs directly from the battery (output: 3.7V) by setting J2 so that the lower two pins will be shorted. This will also enable you to use LEDs that require a higher forward-bias voltage (s.a. blue LEDs).
 
 #### Connecting the battery and NTC
 
