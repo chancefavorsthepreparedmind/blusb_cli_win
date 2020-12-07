@@ -240,11 +240,21 @@ int main(int argc, uchar **argv)
 		if (argc > 1 && strcmp(argv[1], "-read_layout") == 0)
 		{
 			bool display_names_flag = false;
-			if ((argc > 3 && strcmp(argv[3], "-names") == 0) || strcmp(argv[2], "-names") == 0)
-				display_names_flag = true;			
+			if (argc > 2)
+				for (uint8_t i = 0; i < argc; i++)
+					if (strcmp(argv[i], "-names") == 0)
+					{
+						display_names_flag = true;
+						break;
+					}
 			p_layout_array_keyfile = (uint16_t*)read_layout(display_names_flag);						
-			if ((argc > 3 && strcmp(argv[3], "-no_print") == 0) || strcmp(argv[2], "-no_print") == 0)
-				p_layout_array_keyfile = NULL;
+			if (argc > 2)
+				for (uint8_t i = 0; i < argc; i++)
+					if (strcmp(argv[i], "-no_print") == 0)
+					{
+						p_layout_array_keyfile = NULL;
+						break;
+					}
 			if (p_layout_array_keyfile != NULL)
 			{
 				// address 0 = nlayers, array data starts at address 1	

@@ -296,7 +296,7 @@ uint8_t *read_layout(bool display_names_flag)
 		printf("\n\n");
 		printf("R%u  ", row_cnt++);
 	}
-	printf("\n\n");
+	printf("\n");
 
 	return page_buffer;
 }

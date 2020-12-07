@@ -77,7 +77,8 @@ void print_keyfile(uint16_t *p_layout_array, uint8_t nlayers)
 	FILE *keyfile;
 	uint8_t char_buf[8] = { 0 }, scan_buf[256] = { 0 }, string_buf[256] = { 0 }, string_buf2[5192] = { 0 };
 
-	printf("\n\nEnter filename: ");
+	printf("\n");
+	printf("Enter filename: ");
 	fgets(scan_buf, sizeof(scan_buf), stdin);
 	sscanf(scan_buf, "%s", string_buf);
 
